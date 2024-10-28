@@ -7,14 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem
-} from '@radix-ui/react-select';
-import { Button } from '@radix-ui/themes';
+
 import { TableCharacteristics } from './TableCharacteristics';
 import shoppingCart from '../../public/discount.svg';
 import { PRICES } from '../constants';
@@ -78,77 +71,57 @@ const ProductPage: React.FC<ProductProps> = ({ name }) => {
 
             <div className="selectors-wrapper">
               <div className="color-selector">
-                <label>Color:</label>
-                <Select
+                <label>
+                  Color: <span className={`color-icon color-${color}`}></span>
+                </label>
+                <select
                   value={color}
-                  onValueChange={(value) => setColor(value)}
+                  onChange={(e) => setColor(e.target.value)}
+                  className="select-input"
                 >
-                  <SelectTrigger className="select-trigger">
-                    <span className={`color-icon color-${color}`}></span>
-                    <SelectValue placeholder="Select Color" />
-                  </SelectTrigger>
-                  <SelectContent
-                    className="select-content"
-                    style={{ position: 'absolute', top: '100%', left: 0 }}
-                  >
-                    {COLORS.map((colorOption) => (
-                      <SelectItem
-                        key={colorOption.value}
-                        value={colorOption.value}
-                        className="select-item"
-                      >
-                        <span
-                          className={`color-icon color-${colorOption.value}`}
-                        ></span>
-                        {colorOption.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  {COLORS.map((colorOption) => (
+                    <option key={colorOption.value} value={colorOption.value}>
+                      {colorOption.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="memory-selector">
-                <label className="">Storage:</label>
-                <Select
+                <label>Storage:</label>
+                <select
                   value={memory}
-                  onValueChange={(value: '128GB' | '256GB' | '512GB' | '1TB') =>
-                    setMemory(value)
+                  onChange={(e) =>
+                    setMemory(
+                      e.target.value as '128GB' | '256GB' | '512GB' | '1TB'
+                    )
                   }
+                  className="select-input"
                 >
-                  <SelectTrigger className="select-trigger">
-                    <div className="memory-button"> {memory}</div>
-
-                    <SelectValue placeholder="Select Storage" />
-                  </SelectTrigger>
-                  <SelectContent style={{ position: 'absolute' }}>
-                    {MEMORY_OPTIONS.map((memoryOption) => (
-                      <SelectItem
-                        key={memoryOption}
-                        value={memoryOption}
-                        className="select-item"
-                      >
-                        {memoryOption}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  {MEMORY_OPTIONS.map((memoryOption) => (
+                    <option key={memoryOption} value={memoryOption}>
+                      {memoryOption}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
             <span className="price-discount">${price.toFixed(2)}</span>
             <span className="price">${(price * 1.1).toFixed(2)}</span>
             <p className="stock-status">In Stock</p>
+
             <div className="buttons-wrapper">
-              <Button className="add-to-cart-btn">
-                Add to Cart{' '}
+              <button className="add-to-cart-btn">
+                Add to Cart
                 <img
                   src={shoppingCart}
-                  alt="shoppingCart"
+                  alt="Cart Icon"
                   width={20}
                   height={20}
                 />
-              </Button>
-              <Button className="buy-now-btn">Buy Now</Button>
+              </button>
+              <button className="buy-now-btn">Buy Now</button>
             </div>
           </div>
         </div>
