@@ -9,7 +9,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 
 import { TableCharacteristics } from './TableCharacteristics';
-import shoppingCart from '../../public/discount.svg';
+import shoppingCart from '/discount.svg';
 import { PRICES } from '../constants';
 import { CollapsedDescription } from './CollapsedDescription';
 

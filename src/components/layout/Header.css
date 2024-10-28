@@ -25,7 +25,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 40px;
+  margin: 0 5vw;
 }
 
 .logo {
@@ -54,8 +54,14 @@ footer {
 .nav-mobile {
   display: none;
 }
+.header-content:last-child div {
+  display: none;
+}
 
 @media (max-width: 768px) {
+  .header-content:last-child div {
+    display: flex;
+  }
   .header-logo {
     max-width: 200px;
   }
